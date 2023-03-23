@@ -26,14 +26,13 @@ function onGalleryClick(e) {
   const alt = e.target.alt;
   const instance = basicLightbox.create(`<img src="${urlOriginal}" alt="${alt}"/>`);
 
-  instance.show();
-  bodyEl.addEventListener(
-    'keydown',
-    e => {
-      if (e.code === 'Escape') {
-        instance.close();
-      }
-    },
-    { once: true }
-  );
+  instance.show(() => {
+    bodyEl.addEventListener('keydown', onKeydown);
+  });
+
+  function onKeydown(e) {
+    if (e.code === 'Escape') {
+      instance.close(bodyEl.removeEventListener('keydown', onKeydown));
+    }
+  }
 }
