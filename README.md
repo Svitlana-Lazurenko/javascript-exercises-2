@@ -1,1 +1,4 @@
-# goit-js-hw-07
+# Javascript exercises №2
+
+- Image gallery
+- SimpleLightbox library
